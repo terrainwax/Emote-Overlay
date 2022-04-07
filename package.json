@@ -1,0 +1,23 @@
+{
+  "name": "Emote-Overlay",
+  "version": "1.0.0",
+  "description": "This project is an overlay that shows emote streaks on the bottom left of the page. **_(Page dimensions are 1280px x 720px)_**  \r It can also show emotes randomly on screen if a chatter does !showemote (*emote_name*)  \r *This overlay can be used in streaming software like OBS*   \r The emotes are taken from Twitch, FFZ, BTTV, and optionally, 7TV.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/terrainwax/Emote-Overlay.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/terrainwax/Emote-Overlay/issues"
+  },
+  "homepage": "https://github.com/terrainwax/Emote-Overlay#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
