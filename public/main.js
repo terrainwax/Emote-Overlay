@@ -217,6 +217,8 @@ function findEmotes(message, messageFull) {
                         if (currentStreak.streak < allStreaks[v].streak)
                             currentStreak = allStreaks[v];
                         allStreaks[v].streak++;
+                        const date = new Date();
+                        allStreaks[v].lastTime = date.setSeconds(date.getSeconds() + 8);
                     }
                 })
             } else {
@@ -227,7 +229,8 @@ function findEmotes(message, messageFull) {
         } // add to emote streak
         else if (messageFull[emoteUsedPos].startsWith("emotes=") && emoteUsed.length > 1) {
             // default twitch emotes
-            const streak = {streak: 1, emote: null, emoteURL: null};
+            const date = new Date();
+            const streak = {streak: 1, emote: null, emoteURL: null, lastTime: date.setSeconds(date.getSeconds() + 8)};
             streak.streak = 1;
             streak.emote = message.substring(parseInt(emoteUsed.split(":")[1].split("-")[0]), parseInt(emoteUsed.split(":")[1].split("-")[1]) + 1);
             streak.emoteURL = `https://static-cdn.jtvnw.net/emoticons/v2/${emoteUsed.split(":")[0]}/default/dark/2.0`;
@@ -239,7 +242,8 @@ function findEmotes(message, messageFull) {
             }
         } else {
             // find bttv/ffz emotes
-            const streak = {streak: 1, emote: null, emoteURL: null};
+            const date = new Date();
+            const streak = {streak: 1, emote: null, emoteURL: null, lastTime: date.setSeconds(date.getSeconds() + 8)};
             streak.streak = 1;
             streak.emote = findEmoteInMessage(messageSplit);
             streak.emoteURL = findEmoteURLInEmotes(currentStreak.emote);
@@ -291,6 +295,15 @@ function streakEvent() {
         }
 
         streakCD = new Date().getTime();
+        setInterval(() => {
+            const date = new Date();
+            Object.keys(allStreaks).some(v => {
+                if (allStreaks[v].lastTime >= date.getTime()) {
+                    delete allStreaks[v];
+                    currentStreak = {streak: 1, emote: null, emoteURL: null};
+                }
+            });
+        }, 8 * 1000);
         setInterval(() => {
             if ((new Date().getTime() - streakCD) / 1000 > 4) {
                 streakCD = new Date().getTime();
