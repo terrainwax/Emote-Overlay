@@ -211,7 +211,6 @@ function findEmotes(message, messageFull) {
         if ((emoteComboBattle == 0 && messageSplit.includes(currentStreak.emote)) ||
             (emoteComboBattle == 1 && (messageSplit.includes(currentStreak.emote) || Object.keys(allStreaks).some(v => messageSplit.includes(v))))) {
             if (emoteComboBattle == 1) {
-                console.log("Passed")
                 Object.keys(allStreaks).some(v => {
                     if (messageSplit.includes(v)) {
                         if (currentStreak.streak < allStreaks[v].streak)
@@ -303,7 +302,7 @@ function streakEvent() {
                     currentStreak = {streak: 1, emote: null, emoteURL: null};
                 }
             });
-        }, 8 * 1000);
+        }, 5 * 1000);
         setInterval(() => {
             if ((new Date().getTime() - streakCD) / 1000 > 4) {
                 streakCD = new Date().getTime();
