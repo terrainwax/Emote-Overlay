@@ -1,4 +1,4 @@
-let debug = false;
+let debug = true;
 
 function log(message) {
     if (debug) {
@@ -246,7 +246,7 @@ function findEmotes(message, messageFull) {
             const streak = {streak: 1, emote: null, emoteURL: null, lastTime: date.setSeconds(date.getSeconds() + 8)};
             streak.streak = 1;
             streak.emote = findEmoteInMessage(messageSplit);
-            streak.emoteURL = findEmoteURLInEmotes(currentStreak.emote);
+            streak.emoteURL = findEmoteURLInEmotes(streak.emote);
             allStreaks[streak.emote] = streak;
             if (emoteComboBattle == 0) {
                 if (currentStreak !== null && currentStreak.emote != null)
