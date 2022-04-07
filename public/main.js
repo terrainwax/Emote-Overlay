@@ -298,7 +298,7 @@ function streakEvent() {
         setInterval(() => {
             const date = new Date();
             Object.keys(allStreaks).some(v => {
-                if (allStreaks[v].lastTime >= date.getTime()) {
+                if (allStreaks[v].lastTime <= date.getTime()) {
                     delete allStreaks[v];
                     currentStreak = {streak: 1, emote: null, emoteURL: null};
                 }
