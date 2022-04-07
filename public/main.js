@@ -206,7 +206,7 @@ function findEmotes(message, messageFull) {
 
         //const entries = Object.fromEntries(allStreaks);
         //console.log(entries)
-        const tmpStreak = currentStreak;
+        const tmpStreak = Object.assign({}, currentStreak);
 
         if ((emoteComboBattle == 0 && messageSplit.includes(currentStreak.emote)) ||
             (emoteComboBattle == 1 && (messageSplit.includes(currentStreak.emote) || Object.keys(allStreaks).some(v => messageSplit.includes(v))))) {
@@ -269,7 +269,7 @@ function findEmotes(message, messageFull) {
             return null;
         }
 
-        if (tmpStreak.emote != currentStreak.emote || tmpStreak.streak != currentStreak.streak)
+        if (tmpStreak.emote !== currentStreak.emote || tmpStreak.streak !== currentStreak.streak)
             streakEvent();
     }
 }
