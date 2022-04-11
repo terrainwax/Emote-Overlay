@@ -279,6 +279,14 @@ function findEmotes(message, messageFull) {
 
 function streakEvent() {
     if (currentStreak.streak >= minStreak && streakEnabled == 1) {
+
+        if (emoteComboBattle == 1) {
+            Object.keys(allStreaks).some(v => {
+                if (allStreaks[v].streak > currentStreak.streak)
+                    currentStreak = allStreaks[v]
+            });
+        }
+
         $("#main").empty();
         $("#main").css("position", "absolute");
         $("#main").css("top", "35");
@@ -288,27 +296,28 @@ function streakEvent() {
         var streakLength = $("#main").append(" 󠀀  󠀀  x" + currentStreak.streak + " " + emoteStreakText);
         streakLength.appendTo("#main");
         gsap.to("#main", 0.15, {scaleX: 1.2, scaleY: 1.2, onComplete: downscale("#main", 1, 1)});
-
+        let nextlargest = {
+            streak: 1,
+            emote: null,
+            emoteURL: null
+        };
         if (emoteComboBattle == 1) {
-            let nextlargest = {
-                streak: 1,
-                emote: null,
-                emoteURL: null
-            };
+
             Object.keys(allStreaks).some(v => {
                 if (allStreaks[v].streak > nextlargest.streak && allStreaks[v].emote != currentStreak.emote)
                     nextlargest = allStreaks[v]
             });
-
-            $("#seconde").empty();
-            $("#seconde").css("position", "absolute");
-            $("#seconde").css("top", "100");
-            $("#seconde").css("left", "35");
-            var img = $("<img />", {src: nextlargest.emoteURL});
-            img.appendTo("#seconde");
-            var streakLength = $("#seconde").append(" 󠀀  󠀀  x" + nextlargest.streak);
-            streakLength.appendTo("#seconde");
-            gsap.to("#seconde", 0.15, {scaleX: 0.9, scaleY: 0.9, onComplete: downscale("#seconde", 0.7, 0.7)});
+            if (nextlargest.emote != null) {
+                $("#seconde").empty();
+                $("#seconde").css("position", "absolute");
+                $("#seconde").css("top", "100");
+                $("#seconde").css("left", "35");
+                var img = $("<img />", {src: nextlargest.emoteURL});
+                img.appendTo("#seconde");
+                var streakLength = $("#seconde").append(" 󠀀  󠀀  x" + nextlargest.streak);
+                streakLength.appendTo("#seconde");
+                gsap.to("#seconde", 0.15, {scaleX: 0.9, scaleY: 0.9, onComplete: downscale("#seconde", 0.7, 0.7)});
+            }
 
         }
 
@@ -331,7 +340,7 @@ function streakEvent() {
             if ((new Date().getTime() - streakCD) / 1000 > 4) {
                 streakCD = new Date().getTime();
                 gsap.to("#main", 0.2, {scaleX: 0, scaleY: 0, delay: 0.5, onComplete: remove});
-                if (emoteComboBattle == 1)
+                if (emoteComboBattle == 1 && nextlargest.emote != null)
                     gsap.to("#seconde", 0.2, {scaleX: 0, scaleY: 0, delay: 0.5});
 
                 function remove() {
