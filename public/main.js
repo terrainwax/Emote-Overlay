@@ -307,7 +307,7 @@ function streakEvent() {
                 if (allStreaks[v].streak > nextlargest.streak && allStreaks[v].emote != currentStreak.emote)
                     nextlargest = allStreaks[v]
             });
-            if (nextlargest.emote != null) {
+            if (nextlargest.emote != null && nextlargest.streak >= minStreak) {
                 $("#seconde").empty();
                 $("#seconde").css("position", "absolute");
                 $("#seconde").css("top", "100");
