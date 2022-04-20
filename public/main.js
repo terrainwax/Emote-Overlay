@@ -293,7 +293,7 @@ function streakEvent() {
         $("#main").css("left", "35");
         var img = $("<img />", {src: currentStreak.emoteURL});
         img.appendTo("#main");
-        var streakLength = $("#main").append(" 󠀀  󠀀  x" + currentStreak.streak + " " + emoteStreakText + " #FREETERRAIN");
+        var streakLength = $("#main").append(" 󠀀  󠀀  x" + currentStreak.streak + " " + emoteStreakText);
         streakLength.appendTo("#main");
         gsap.to("#main", 0.15, {scaleX: 1.2, scaleY: 1.2, onComplete: downscale("#main", 1, 1)});
         let nextlargest = {
