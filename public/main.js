@@ -42,7 +42,7 @@ async function getEmotes(check) {
     let totalErrors = [];
 
     // get channel twitch ID
-    let res = await fetch(proxyurl + "https://api.ivr.fi/twitch/resolve/" + channel, {
+    let res = await fetch(proxyurl + "https://api.ivr.fi/v2/twitch/user?login=" + channel, {
         method: "GET",
         headers: {"User-Agent": "api.roaringiron.com/emoteoverlay"},
     }).then(returnResponse, logError);
