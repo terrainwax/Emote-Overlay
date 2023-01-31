@@ -38,7 +38,7 @@ async function getEmotes(check) {
 
     // const proxyurl = 'https://cors-anywhere.herokuapp.com/';
     const proxyurl = "https://tpbcors.herokuapp.com/";
-    let twitchID;
+    let twitchID = "101234264";
     let totalErrors = [];
 
     // get channel twitch ID
