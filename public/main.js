@@ -47,8 +47,7 @@ async function getEmotes(check) {
         headers: {"User-Agent": "api.roaringiron.com/emoteoverlay"},
     }).then(returnResponse, logError);
     if (!res.error || res.status == 200) {
-        console.log(res)
-        twitchID = res.id;
+        twitchID = res[0].id;
     } else {
         totalErrors.push("Error getting twitch ID");
     }
