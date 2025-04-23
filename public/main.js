@@ -37,7 +37,7 @@ async function getEmotes(check) {
     }
 
     // const proxyurl = 'https://cors-anywhere.herokuapp.com/';
-    const proxyurl = "https://tpbcors.herokuapp.com/";
+    const proxyurl = "https://api.roaringiron.com/proxy/";
     let twitchID = "101234264";
     let totalErrors = [];
 
